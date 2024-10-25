@@ -1,32 +1,38 @@
 <template>
-  <div>
+  <v-container>
     <h1>Edit Buku</h1>
-    <form v-if="book" @submit.prevent="submitForm">
-      <div>
-        <label>Kode Buku:</label>
-        <input v-model="kode_buku" required />
-      </div>
-      <div>
-        <label>Judul Buku:</label>
-        <input v-model="judul_buku" required />
-      </div>
-      <div>
-        <label>Genre:</label>
-        <input v-model="genre" required />
-      </div>
-      <div>
-        <label>Penulis:</label>
-        <input v-model="penulis" required />
-      </div>
-      <div>
-        <label>Harga Buku:</label>
-        <input type="number" v-model="harga_buku" required />
-      </div>
-      <button type="submit">Perbarui</button>
-      <button type="button" @click="cancel">Batal</button>
-    </form>
+    <v-form v-if="book" @submit.prevent="submitForm">
+      <v-text-field
+        label="Kode Buku"
+        v-model="kode_buku"
+        required
+      ></v-text-field>
+      <v-text-field
+        label="Judul Buku"
+        v-model="judul_buku"
+        required
+      ></v-text-field>
+      <v-text-field
+        label="Genre"
+        v-model="genre"
+        required
+      ></v-text-field>
+      <v-text-field
+        label="Penulis"
+        v-model="penulis"
+        required
+      ></v-text-field>
+      <v-text-field
+        label="Harga Buku"
+        type="number"
+        v-model="harga_buku"
+        required
+      ></v-text-field>
+      <v-btn type="submit" color="primary">Perbarui</v-btn>
+      <v-btn @click="cancel" color="grey">Batal</v-btn>
+    </v-form>
     <p v-else>Loading...</p>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -54,14 +60,12 @@ export default {
     ...mapActions(['clearSelectedBook']),
     fetchBookDetails() {
       if (this.book) {
-        // Copy data dari Vuex ke data lokal
         this.kode_buku = this.book.kodeBuku
         this.judul_buku = this.book.judul
         this.genre = this.book.genre
         this.penulis = this.book.penulis
         this.harga_buku = this.book.harga
       } else {
-        // Jika tidak ada buku yang dipilih, arahkan kembali ke halaman daftar
         alert('Tidak ada buku yang dipilih untuk diedit.')
         this.$router.push('/')
       }
@@ -98,22 +102,4 @@ export default {
 </script>
 
 <style scoped>
-form {
-  max-width: 400px;
-}
-div {
-  margin-bottom: 10px;
-}
-label {
-  display: block;
-  margin-bottom: 5px;
-}
-input, textarea {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-}
-button {
-  margin-right: 10px;
-}
 </style>
