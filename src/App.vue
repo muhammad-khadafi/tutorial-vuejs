@@ -1,9 +1,19 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import Header from './components/Header.vue'
+import MenuBar from './components/MenuBar.vue'
+import { VApp, VContainer } from 'vuetify/components'
 </script>
 
 <template>
-  <RouterView />
+  
+
+  <VApp>
+    <Header />
+    <MenuBar />
+    <VMain>
+      <RouterView />
+    </VMain>
+  </VApp>
 </template>
 
 <style scoped>
